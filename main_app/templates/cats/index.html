@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %} {% block content %}
+
+{%load static%}
+<h1>Cat List</h1>
+
+{% for cat in cats %}
+<div class="card indexCard">
+  <div class="card-content">
+    <a href="{% url 'detail' cat.id%}">View</a>
+    <span class="card-title">{{cat.name}}</span>
+    <p>Breed: {{cat.breed}}</p>
+    <p>Description: {{cat.description}}</p>
+    {%if cat.age > 0 %}
+    <p>Age: {{cat.age}}</p>
+    {% else%}
+    <p>Age: Kitten</p>
+    {% endif %}
+  </div>
+    <img src="{% static cat.image|cut:'main_app/static/'%}" />
+</div>
+{% endfor %} {% endblock %}

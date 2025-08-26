@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+<!-- Comment-->
+{% block content %}
+
+
+{% if object %}
+  <h1>Edit <span class="teal-test"{{object.name}}></span> </h1>
+{% else %}
+  <h1>Add Cat</h1>
+{% endif %} 
+
+
+
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<table>
+  {{form.as_table}}
+</table>
+  <input type="submit" value="Submit !" calss="btn">
+</form>
+
+{% endblock %}

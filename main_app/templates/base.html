@@ -1,0 +1,61 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Collector</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
+  <body>
+    <header class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <ul>
+            <li>
+              <a href="{% url 'home' %}" class="right brand-logo">&nbsp;&nbsp;Cat Collector</a>
+            </li>
+          </ul>
+          
+            <li>
+              {% if not user.is_authenticated %}
+              <a href="{% url 'about'%}">About</a>
+              <a href="{% url 'login'%}">Login</a>
+              <a href="{% url 'signup'%}">Signup</a>
+              {% else%}
+              <a href="{% url 'index' %}">Cats</a>
+              <a href="{% url 'create'%}">Create a cat</a>
+              
+              <a href="{% url 'toys_create' %}">Create a toy</a>
+              <a href="{% url 'toys_index'%}">All toys</a>
+              <form action="{% url 'logout'%}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+              </form>
+            </li>
+
+            {% endif %}
+
+
+          
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      {% block content %}
+      {% endblock %}
+    </main>
+
+    <footer class="page-footer">
+      <div class="right">
+        All Rights Rsserved, &copy; 2025 Cat Collector &nbsp; 
+      </div>
+    </footer>
+  </body>
+</html>

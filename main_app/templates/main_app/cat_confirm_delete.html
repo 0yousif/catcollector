@@ -1,0 +1,15 @@
+{% extends  'base.html' %}
+
+{% block content %}
+  <h1>Delete Car</h1>
+
+  <h4>Are you sure you want to delete <span class="teal-test">{{ object.name }}</span>?</h4>
+
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" value="yes - Delete!" id="btn">
+    <a href="{% url 'detail' cat.id%}">Cancel</a>
+  </form>
+
+
+  {% endblock %}
